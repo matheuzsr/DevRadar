@@ -1,0 +1,18 @@
+  //para atualizar um unico dev
+//nome, avatar, bio,localizacao, techs
+  async update(response, request) {
+    await Dev.updateOne (filter, { name: 'Will Riker' });
+
+
+    const request.params
+  
+  const devs = await Dev.find();
+
+}
+
+////para excluir um dev
+async destroy(response, request){
+
+}
+
+//Route Params: request.params  (Identificar recurso alteracao ou remocao)
