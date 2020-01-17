@@ -1,7 +1,7 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
 const parseStringAsArray = require('../utils/parseStringAsArray');
-
+const { findConnections } = require('../websocket');
 //index, show, store, update, destroy
 
 module.exports = {
@@ -40,17 +40,25 @@ module.exports = {
         location
       });
 
+      //Filtrar as connections
+      //que estao a no máximo 50km e que possuem a tech
+      const sendSocketMessageTo = findConnections(
+        { latitude, longitude },
+        techsArray,
+      )
+
+      console.log(sendSocketMessageTo);
     }
     return response.json(dev);
   },
 
-  async destroy(request,response){
+  async destroy(request, response) {
     const { github_username } = request.query;
-    
+
     //procure e delete
     let dev = await Dev.findOneAndDelete({ github_username });
     const message = dev ? "Delete Usuário deletado" : "Usuário não encontrado";
-    
+
     return response.json({ message, dev });
   },
 
