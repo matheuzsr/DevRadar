@@ -1,9 +1,16 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "DevRadar",
+    "slug": "devradar",
     "privacy": "public",
     "sdkVersion": "36.0.0",
+    "ios": {
+      "bundleIdentifier": "com.digitalsolucoes.devradar"
+    },
+    "android": {
+      "package": "com.digitalsolucoes.devradar"
+    },
+
     "platforms": [
       "ios",
       "android",
@@ -25,6 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Encontrar Devs próximos que utilizam a tech pesquisada",
+    "githubUrl": "https://github.com/matheuzsr/DevRadar/tree/master/mobile"
   }
 }

@@ -5,6 +5,8 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../services/api';
+import socket from '../services/socket';
+import {connect, disconnect } from '../services/socket';
 
 function Main({ navigation }) {
     const [devs, setDevs] = useState([]);
@@ -36,15 +38,21 @@ function Main({ navigation }) {
         Keyboard.addListener('keyboardDidHide', ()=>setKeyboardShown(false));
     }, []);
 
+    function setupWebsocket() {
+        connect();
+    }
+
     async function loadDevs() {
         if (searching)
             return;
         setSearching(true);
         const { latitude, longitude } = currentRegion
         const response = await api.get('/search', { params: {latitude, longitude, techs }});
-        setDevs(response.data.devs);
-        setSearching(false);
+        setDevs(response.data.devs);        
+        //setSearching(false);
+
     }
+    setupWebsocket();
 
     function handleRegionChange(region) {
         setCurrentRegion(region);
@@ -68,7 +76,7 @@ function Main({ navigation }) {
                         }}>
                         <Image style={styles.avatar} source={{ uri: dev.avatar_url }}></Image>
                         <Callout onPress={() => {
-                            // Navegação
+                            // Navegaï¿½ï¿½o
                             navigation.navigate('Profile', { github: dev.github });
                         }}>
                             <View style={styles.callout}>
@@ -140,7 +148,8 @@ const styles = StyleSheet.create({
     },
 
     searchTop: {
-        top: 20
+        
+      top: 410
     },
 
     searchBottom: {
