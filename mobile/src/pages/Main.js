@@ -11,7 +11,6 @@ import {connect, disconnect } from '../services/socket';
 function Main({ navigation }) {
     const [devs, setDevs] = useState([]);
     const [techs, setTechs] = useState('');
-    const [searching, setSearching] = useState(false);
     const [currentRegion, setCurrentRegion] = useState(null);
     const [keyboardShown, setKeyboardShown] = useState(false);
 
@@ -43,13 +42,9 @@ function Main({ navigation }) {
     }
 
     async function loadDevs() {
-        if (searching)
-            return;
-        setSearching(true);
-        const { latitude, longitude } = currentRegion
+        const { latitude, longitude } = currentRegion;
         const response = await api.get('/search', { params: {latitude, longitude, techs }});
-        setDevs(response.data.devs);        
-        //setSearching(false);
+        setDevs(response.data.devs);
 
     }
     setupWebsocket();
@@ -99,9 +94,8 @@ function Main({ navigation }) {
                     onChangeText={setTechs}
                 />
 
-                <TouchableOpacity onPress={loadDevs} disabled={searching} style={styles.searchButton}>
-                    {!searching && <MaterialIcons name="my-location" size={20} color="#FFF" />}
-                    { searching && <MaterialIcons name="gps-not-fixed" size={20} color="#FFF" />}
+                <TouchableOpacity onPress={loadDevs} style={styles.searchButton}>
+                    <MaterialIcons name="my-location" size={20} color="#FFF" />
                 </TouchableOpacity>
             </View>
         </>
