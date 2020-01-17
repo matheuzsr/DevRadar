@@ -41,7 +41,7 @@ module.exports = {
       });
 
       //Filtrar as connections
-      //que estao a no máximo 50km e que possuem a tech
+      //que estao a no máximo 10km e que possuem a tech
       const sendSocketMessageTo = findConnections(
         { latitude, longitude },
         techsArray,

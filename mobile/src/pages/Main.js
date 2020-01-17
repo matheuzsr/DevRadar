@@ -74,7 +74,7 @@ function Main({ navigation }) {
                         <Image style={styles.avatar} source={{ uri: dev.avatar_url }}></Image>
                         <Callout onPress={() => {
                             // Navegacao
-                            navigation.navigate('Profile', { github: dev.github });
+                            navigation.navigate('Profile', { github_username: dev.github_username });
                         }}>
                             <View style={styles.callout}>
                                 <Text style={styles.devName}>{dev.name}</Text>
