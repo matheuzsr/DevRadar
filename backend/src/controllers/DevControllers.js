@@ -42,7 +42,17 @@ module.exports = {
 
     }
     return response.json(dev);
-  }
+  },
+
+  async destroy(request,response){
+    const { github_username } = request.query;
+    
+    //procure e delete
+    let dev = await Dev.findOneAndDelete({ github_username });
+    const message = dev ? "Delete Usuário deletado" : "Usuário não encontrado";
+    
+    return response.json({ message, dev });
+  },
 
 };
 
