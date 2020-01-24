@@ -40,7 +40,7 @@ function Main({ navigation }) {
         const {latitude, longitude} = currentRegion;
         connect(
             latitude,
-            latitude,
+            longitude,
             techs,
         );
     }

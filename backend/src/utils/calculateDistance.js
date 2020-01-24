@@ -22,6 +22,5 @@ module.exports = function getDistanceFromLatLonInKm(
       Math.sin(dLon / 2);
   const center = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = radius * center;
-  console.log('Distance: '+distance);
   return distance;
 };

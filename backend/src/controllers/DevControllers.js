@@ -38,7 +38,7 @@ module.exports = {
         bio,
         techs: techsArray,
         location
-      });
+      })
 
       //Filtrar as connections
       //que estao a no máximo 10km e que possuem a tech
